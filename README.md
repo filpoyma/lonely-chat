@@ -3,6 +3,6 @@
 type: 
 
 npm install\
-npm start\
+npm start
 
 for start...
