@@ -8,9 +8,9 @@ const URL = "ws://localhost:3030";
 
 class Chat extends Component {
   state = {
-    name: "",
+    name: sessionStorage.getItem("name"),
     messages: [],
-    isNameDisbld: false,
+    isDisable: false,
   };
 
   ws = new WebSocket(URL);
@@ -47,7 +47,8 @@ class Chat extends Component {
   };
 
   submitMessage = (messageVal) => {
-    if (!this.state.name) {
+    const { name } = this.state;
+    if (!name) {
       alert("Не задано имя");
       return;
     }
@@ -55,8 +56,9 @@ class Chat extends Component {
       alert("Напишите сообщение");
       return;
     }
+    sessionStorage.setItem("name", name);
     this.sendMessage(messageVal);
-    this.setState({ isNameDisbld: true });
+    this.setState({ isDisable: true });
     if (this.timerId) clearInterval(this.timerId);
     this.timerId = setInterval(async () => {
       this.sendMessage(await getQuotes());
@@ -64,11 +66,11 @@ class Chat extends Component {
   };
 
   render() {
-    const { name, isNameDisbld } = this.state;
+    const { name, isDisable } = this.state;
     return (
       <div>
         <NameInput
-          disabled={isNameDisbld}
+          disabled={isDisable}
           name={name}
           onChange={(e) => this.setState({ name: e.target.value })}
         />
