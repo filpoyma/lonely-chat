@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "server": "node app.js",
+    "client": "npm run start --prefix client",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "postinstall": "cd client && npm install"
+  },
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "lonley-chat": "file:client",
+    "ws": "^6.0.0"
+  }
+}
