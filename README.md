@@ -1,5 +1,8 @@
 # lonely-chat
-type 
-npm install
-npm start
+
+type: 
+
+npm install\
+npm start\
+
 for start...
